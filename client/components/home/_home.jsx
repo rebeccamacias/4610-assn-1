@@ -34,6 +34,11 @@ export const Home = () => {
   return (
     <div className="p-4">
       <h1>Welcome {user.firstName}</h1>
+    <div>
+      <h1>Projects</h1>
+      {/*TODO Create project component, then get all projects the user is associated with */}
+    </div>
+
       <Button type="button" onClick={logout}>
         Logout
       </Button>
