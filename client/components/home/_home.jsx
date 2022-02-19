@@ -30,13 +30,24 @@ export const Home = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+  var projects = []; // Get projects using api
 
+  var projectsDiv = projects.map((project)=> 
+  <div>
+      Name {/*Get Project name */}
+      Go to Project
+      <Button type="button" onClick={()=> navigate()/*Navigate to project view */}>
+        Go to project name {}
+      </Button>
+  </div>)
+  
   return (
     <div className="p-4">
       <h1>Welcome {user.firstName}</h1>
     <div>
       <h1>Projects</h1>
       {/*TODO Create project component, then get all projects the user is associated with */}
+      {projectsDiv}
     </div>
 
       <Button type="button" onClick={logout}>
