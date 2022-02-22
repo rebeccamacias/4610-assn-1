@@ -1,11 +1,60 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class Project1645397955482 implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(
+	  new Table({
+	    name: 'project',
+		columns: [
+		  {
+		    name: 'project_id',
+		    isPrimary: true,
+		    isGenerated: true,
+			type: 'int'
+          },
+		  {
+		  	name: 'team_leader_id',
+			type: 'int',
+		  },
+		  {
+		  	name: 'name',
+			isNullable: false,
+			type: 'text',
+		  },
+		  {
+		    name: 'description',
+			isNullable: false,
+			type: 'text',
+		  },
+		  {
+		    name: 'context_id',
+			isNullable: false,
+			type: 'text',
+		  },
+        ],
+	  }),
+	);
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-    }
+	await queryRunner.createForeignKey(
+	  'project',
+	  new TableForeignKey({
+	    columnNames: ['team_leader_id'],
+		referencedColumnNames: ['id'],
+		referencedTableName: 'user',
+		onDelete: 'CASCADE',
+	  }),
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-    }
+	  new TableForeignKey({
+	  	columnNames: ['context_id'],
+		referencedColumnNames: ['contextId'],
+		referencedTableName: 'user-role',
+		onDelete: 'CASCADE',
+	  }),
+	);
+  }
+
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('project');
+  }
 
 }
