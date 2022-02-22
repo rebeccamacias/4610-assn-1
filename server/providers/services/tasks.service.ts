@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Task } from "server/entities/Task.entity";
+import { Task } from "server/entities/tasks.entity";
 import { Repository } from "typeorm";
 
 
@@ -17,7 +17,7 @@ export class TasksService {
         })
     }
 
-    createProject(task: Task): Promise<Task> {
+    createTask(task: Task): Promise<Task> {
         return this.taskRepository.save(task);
     }
 
