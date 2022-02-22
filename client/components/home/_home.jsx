@@ -33,10 +33,10 @@ export const Home = () => {
   var projects = []; // Get projects using api
 
   var projectsDiv = projects.map((project)=> 
-  <div>
+  <div key={project.project_id}>
       Name {/*Get Project name */}
       Go to Project
-      <Button type="button" onClick={()=> navigate()/*Navigate to project view */}>
+      <Button type="button" onClick={()=> navigate("/project/")/*Navigate to project view */}>
         Go to project name {}
       </Button>
   </div>)
