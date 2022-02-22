@@ -14,6 +14,8 @@ export const Home = () => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [newProjectName, setNewProjectName] = useState("");
+
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
@@ -46,11 +48,18 @@ export const Home = () => {
       <h1>Welcome {user.firstName}</h1>
     <div>
       <h1>Projects</h1>
-      <Button type="button" onClick={/** Create new project */}>Create new project</Button>
+      
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
       
     </div>
+    <textarea
+        className="p-2 border-2 rounded flex"
+        value={newProjectName}
+        onChange={(e) => setNewProjectName(e.target.value)}
+      />
+    <Button type="button" onClick={createNewProject()}>Create new project</Button> 
+    
 
       <Button type="button" onClick={logout}>
         Logout
