@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post, Put } from '@nestjs/common';
 import { JwtBody } from 'server/decorators/jwt_body.decorator';
 import { JwtBodyDto } from 'server/dto/jwt_body.dto';
-import { Task } from 'server/entities/tasks.entity';
+import { Task } from 'server/entities/task.entity';
 import { TasksService } from 'server/providers/services/tasks.service';
 
 
-class Task{
+class TaskPostBody{
     title: string;
     description: string;
     time_estimation: number;

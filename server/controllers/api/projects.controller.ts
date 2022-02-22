@@ -5,8 +5,10 @@ import { Project } from 'server/entities/project.entity';
 import { ProjectsService } from 'server/providers/services/projects.service';
 
 
-class Project{
-
+class ProjectPostBody {
+    team_leader_id: number;
+    name: string;
+    description: string;
 }
 
 @Controller()
@@ -16,13 +18,15 @@ export class ProjectsController {
     @Get('projects') //get all of the projects for a user
     public async index(@JwtBody() jwtBody: JwtBodyDto) {
         const projects = await this.projectsService.findAllForUser(jwtBody.userId);
-        return {projects};
+        return { projects };
     }
 
     @Post('projects') //add a new project to projects, assign user to project
-    public async create(@JwtBody() jwtBody: JwtBodyDto, @Body() body: ProjectBody) {
+    public async create(@JwtBody() jwtBody: JwtBodyDto, @Body() body: ProjectPostBody) {
         let project = new Project();
-        project.userId = jwtBody.userId;
+        project.team_leader_id = body.team_leader_id;
+        project.name = body.name;
+        project.description = body.description;
         project = await this.projectsService.createProject(project);
         return { project };
     }

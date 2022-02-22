@@ -25,5 +25,5 @@ export class Task {
   status: boolean;
 
   @ManyToOne(() => User, (user) => user.tasks)
-  user: User;
+  user: User[];
 }
