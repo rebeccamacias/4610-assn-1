@@ -35,9 +35,8 @@ export const Home = () => {
   var projectsDiv = projects.map((project)=> 
   <div key={project.project_id}>
       Name {/*Get Project name */}
-      Go to Project
       <Button type="button" onClick={(api.get('/project:id'))} /*Navigate to project view */>
-        Go to project name {}
+        Go to project name {project.name}
       </Button>
   </div>)
   
@@ -45,7 +44,7 @@ export const Home = () => {
     <div className="p-4">
       <h1>Welcome {user.firstName}</h1>
     <div>
-      <h1>Projects what the hell</h1>
+      <h1>Projects</h1>
       <Button type="button" onClick={api.null}>Create new project</Button>
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
