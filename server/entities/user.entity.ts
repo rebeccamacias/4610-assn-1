@@ -24,4 +24,10 @@ export class User {
 
   @OneToMany(() => UserRole, (userRole) => userRole.user, { cascade: true })
   userRoles: UserRole[];
+
+  @OneToMany(() => Project, (project) => project.user)
+  projects: Project[];
+
+  @OneToMany(() => Task, (task) => task.user)
+  tasks: Task[];
 }

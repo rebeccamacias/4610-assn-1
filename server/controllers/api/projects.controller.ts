@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post } from '@nestjs/common';
 import { JwtBody } from 'server/decorators/jwt_body.decorator';
 import { JwtBodyDto } from 'server/dto/jwt_body.dto';
-import { Project } from 'server/entities/note.entity';
+import { Project } from 'server/entities/project.entity';
 import { ProjectsService } from 'server/providers/services/projects.service';
 
 
