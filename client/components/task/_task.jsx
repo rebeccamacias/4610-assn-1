@@ -50,7 +50,7 @@ export const Task = () => {
             <Input defaultValue={task.description}>Description</Input>
             <Input defaultValue={task.time_estimation}>Time estimate</Input>
             <Input defaultValue={task.status}>Completion Status</Input>
-            Assigned to: 
+            Assigned to: {user.name}
 
             <Button onClick={saveTaskChanges}>Save Changes</Button>
             
