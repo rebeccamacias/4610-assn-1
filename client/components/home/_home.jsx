@@ -4,6 +4,7 @@ import { ApiContext } from '../../utils/api_context';
 import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
+import { Input } from '../common/input';
 
 export const Home = () => {
   const [, setAuthToken] = useContext(AuthContext);
@@ -15,8 +16,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [newProjectName, setNewProjectName] = useState("");
-  //const [projects, setProjects] = useState(null);
-
+  
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
@@ -29,18 +29,7 @@ export const Home = () => {
       setAuthToken(null);
     }
   };
-/*
-  const fetchProjects = async () => {
-    // Fetch projects
-  }
 
-  const createNewProject = async () => {
-    if (newProjectName == ""){
-      // Do nothing
-    } else {
-      // create new project using newProjectName
-    }
-  } */
 
   if (loading) {
     return <div>Loading...</div>;
@@ -66,11 +55,13 @@ export const Home = () => {
       {projectsDiv}
       
     </div>
-    <textarea
-        className="p-2 border-2 rounded flex"
-        value={newProjectName}
-        onChange={(e) => setNewProjectName(e.target.value)}
-      />
+    <label for="newProject">New Project Name: </label>
+    <input id="newProject" 
+      value={newProjectName}
+      onChange={(e) => setNewProjectName(e.target.value)}>
+
+    </input>
+    
     <Button type="button" onClick={createNewProject}>Create new project</Button> 
     
 
