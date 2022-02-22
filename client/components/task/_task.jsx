@@ -6,7 +6,7 @@ import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
 import { Input } from "../common/input";
 
-export const Task = () => {
+export const Task = () => { 
     const [, setAuthToken] = useContext(AuthContext);
     const api = useContext(ApiContext);
     const roles = useContext(RolesContext);
@@ -31,6 +31,10 @@ export const Task = () => {
         setAuthToken(null);
       }
     };
+
+    const saveTask = () =>{
+        
+    }
 
     if (loading) {
         return <div>Loading...</div>;
