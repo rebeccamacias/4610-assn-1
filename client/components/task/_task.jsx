@@ -17,8 +17,11 @@ export const Task = () => {
     const [project, setProject] = useState(null);
     
     // Get task from router
-    const [task, setTask] = useState(null)
-    
+    const [task, setTask] = useState(null);
+
+    // if task is assigned, get user id from team id
+    const [user, setUser] = useState(null);
+
     useEffect(async () => {
       const res = await api.get('/users/me');
       setUser(res.user);
@@ -33,7 +36,7 @@ export const Task = () => {
     };
 
     const saveTask = () =>{
-        
+
     }
 
     if (loading) {
@@ -47,6 +50,7 @@ export const Task = () => {
             <Input defaultValue={task.description}>Description</Input>
             <Input defaultValue={task.time_estimation}>Time estimate</Input>
             <Input defaultValue={task.status}>Completion Status</Input>
+            Assigned to: 
 
             <Button onClick={saveTaskChanges}>Save Changes</Button>
             
