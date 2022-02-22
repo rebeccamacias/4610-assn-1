@@ -36,7 +36,7 @@ export const Home = () => {
   <div key={project.project_id}>
       Name {/*Get Project name */}
       Go to Project
-      <Button type="button" onClick={()=> navigate("/project/")/*Navigate to project view */}>
+      <Button type="button" onClick={(api.get('/project:id'))} /*Navigate to project view */>
         Go to project name {}
       </Button>
   </div>)
@@ -45,9 +45,11 @@ export const Home = () => {
     <div className="p-4">
       <h1>Welcome {user.firstName}</h1>
     <div>
-      <h1>Projects</h1>
+      <h1>Projects what the hell</h1>
+      <Button type="button" onClick={/** Create new project */}>Create new project</Button>
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
+      
     </div>
 
       <Button type="button" onClick={logout}>
