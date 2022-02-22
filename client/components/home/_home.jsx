@@ -36,7 +36,7 @@ export const Home = () => {
   <div key={project.project_id}>
       Name {/*Get Project name */}
       Go to Project
-      <Button type="button" onClick={()=> navigate("/project/")/*Navigate to project view */}>
+      <Button type="button" onClick={(api.get('/project:id'))} /*Navigate to project view */>
         Go to project name {}
       </Button>
   </div>)
