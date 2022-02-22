@@ -11,10 +11,7 @@ export const Note = ({task}) =>{
             {task.title}
             {task.description}
             {task.time_estimation}
-            {task.status}
-            Completed <input type="checkbox" checked = {checked} onChange={handleChecked}>
-
-            </input>
+            Completed {task.status}
         </div>
     )
 }
