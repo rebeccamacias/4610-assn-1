@@ -70,6 +70,7 @@ export const Home = () => {
         className="p-2 border-2 rounded flex"
         value={newProjectName}
         onChange={(e) => setNewProjectName(e.target.value)}
+        placeholder="Project Name"
       />
     <Button type="button" onClick={createNewProject}>Create new project</Button> 
     
