@@ -15,6 +15,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [newProjectName, setNewProjectName] = useState("");
+  const [projects, setProjects] = useState(null);
 
   useEffect(async () => {
     const res = await api.get('/users/me');
@@ -28,6 +29,18 @@ export const Home = () => {
       setAuthToken(null);
     }
   };
+
+  const fetchProjects = async () => {
+    // Fetch projects
+  }
+
+  const createNewProject = async () => {
+    if (newProjectName == ""){
+      // Do nothing
+    } else {
+      // create new project using newProjectName
+    }
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,7 +71,7 @@ export const Home = () => {
         value={newProjectName}
         onChange={(e) => setNewProjectName(e.target.value)}
       />
-    <Button type="button" onClick={createNewProject()}>Create new project</Button> 
+    <Button type="button" onClick={createNewProject}>Create new project</Button> 
     
 
       <Button type="button" onClick={logout}>
