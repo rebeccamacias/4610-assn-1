@@ -46,7 +46,7 @@ export const Home = () => {
       <h1>Welcome {user.firstName}</h1>
     <div>
       <h1>Projects what the hell</h1>
-      <Button type="button" onClick={/** Create new project */}>Create new project</Button>
+      <Button type="button" onClick={api.null}>Create new project</Button>
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
       
