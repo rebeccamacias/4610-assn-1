@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ApiContext } from '../../utils/api_context';
 import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
 import { Input } from '../common/input';
+import { Projects } from './_projects';
 
 export const Home = () => {
   const [, setAuthToken] = useContext(AuthContext);
@@ -15,7 +17,7 @@ export const Home = () => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [newProjectName, setNewProjectName] = useState("");
+  const [newProjectName, setNewProjectName, newProjectDescription, setNewProjectDescription] = useState("");
   const [projects, setProjects] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   
@@ -41,30 +43,51 @@ export const Home = () => {
   }
   
 
-  const projectsDiv = projects.map((project)=> 
+  const projectsDiv = projects.map((project) => 
   <div key={project.project_id}>
-      Name {/*Get Project name */}
-      Go to Project
-      <Button type="button" onClick={(api.get('/project:id'))} /*Navigate to project view */>
-        Go to project name {}
+      <Button type="button" onClick={(<Link to={`project/${project.project_id}`}></Link>)} /*Navigate to project view */>
+        {project.name}
       </Button>
-  </div>)
+      {project.description}
+  </div>
+  )
+
+const saveProject = async () => {
+  setErrorMessage('');
+
+  if (projectName === '') {
+    setErrorMessage("Project name can't be empty");
+    return;
+  }
+  const projectBody = {
+    team_leader_id: api.get('team_leader/:' + user_id),
+    name: projectName,
+    description: projectDescription,
+  };
+  const { project } = await api.post('/projects', projectBody);
+
+  setProjects([...projects, project]);
+};
   
   return (
     <div className="p-4">
       <h1>Welcome {user.firstName}</h1>
+    
+    <br/>
+
+    {/*TODO Create project component, then get all projects the user is associated with */}
+    <div>New Project Name</div>
+    <Input type="text" value={projectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
+    <div>New Project Description</div>
+    <Input type ="text" value={projectDescription} onChange={(e) => {setNewProjectDescription(e.target.value);}}></Input>
+    <div></div>
+    <Button type="button" onClick={api.post('projects')}>Create new project</Button>
+    <br/> 
+
     <div>
       <h1>Projects</h1>
-      
-      {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
     </div>
-    <br/>
-    <div>New Project Name</div>
-    <Input type="text" value={newProjectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
-    <Button type="button" onClick={console.log(newProjectName)}>Create new project</Button>
-    <br/> 
-    
 
       <Button type="button" onClick={logout}>
         Logout

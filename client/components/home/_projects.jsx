@@ -1,5 +1,5 @@
 
-import { Project } from './project';
+import { Project } from './_project';
 
 export const Projects = ({ projects }) => {
   return (

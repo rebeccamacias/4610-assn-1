@@ -20,7 +20,7 @@ export const Router = () => {
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
 
-      <Route path="project/:id" element={<Project />}/>
+      <Route path="project/:project_id" element={<Project />}/>
       <Route path="*" element={<div>404</div>} /*makes sure we go to 404 for any other path accessed */ />
 
     </Routes>
