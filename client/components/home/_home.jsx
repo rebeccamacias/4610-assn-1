@@ -16,6 +16,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [newProjectName, setNewProjectName] = useState("");
+  const [projects, setProjects] = useState([]);
   
   useEffect(async () => {
     const res = await api.get('/users/me');
@@ -30,13 +31,16 @@ export const Home = () => {
     }
   };
 
+  // Get projects using api
+
+
 
   if (loading) {
     return <div>Loading...</div>;
   }
-  var projects = []; // Get projects using api
+  
 
-  var projectsDiv = projects.map((project)=> 
+  const projectsDiv = projects.map((project)=> 
   <div key={project.project_id}>
       Name {/*Get Project name */}
       Go to Project
@@ -53,16 +57,9 @@ export const Home = () => {
       
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
-      
     </div>
-    <label for="newProject">New Project Name: </label>
-    <input id="newProject" 
-      value={newProjectName}
-      onChange={(e) => setNewProjectName(e.target.value)}>
-
-    </input>
     
-    <Button type="button" onClick={createNewProject}>Create new project</Button> 
+    <Button type="button" onClick={api.null}>Create new project</Button> 
     
 
       <Button type="button" onClick={logout}>
