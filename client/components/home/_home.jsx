@@ -17,6 +17,7 @@ export const Home = () => {
   const [user, setUser] = useState(null);
   const [newProjectName, setNewProjectName] = useState("");
   const [projects, setProjects] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
   
   useEffect(async () => {
     const res = await api.get('/users/me');

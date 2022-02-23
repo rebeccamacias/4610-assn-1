@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './home/_home';
+import { Project } from './home/_project';
 import { AuthContext } from '../utils/auth_context';
 import { SignIn } from './sign_in/_sign_in';
 import { SignUp } from './sign_up/_sign_up';
@@ -18,6 +19,10 @@ export const Router = () => {
       <Route path="admin" element={<Admin />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
+
+      <Route path="project/:id" element={<Project />}/>
+      <Route path="*" element={<div>404</div>} /*makes sure we go to 404 for any other path accessed */ />
+
     </Routes>
   );
 };

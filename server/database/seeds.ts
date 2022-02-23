@@ -5,6 +5,7 @@ import { Role, RoleKey } from '../entities/role.entity';
 import * as dotenv from 'dotenv';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from '../entities/user_role.entity';
+import { Project } from 'server/entities/project.entity';
 dotenv.config();
 
 export default class Seeds implements Seeder {
@@ -45,5 +46,15 @@ export default class Seeds implements Seeder {
     } else {
       console.log(`\nAdmin User with email ${process.env.ADMIN_EMAIL} already exists`);
     }
+
+    // //Add a Project Initially
+    // const projectRepository = connection.getRepository(Project);
+    // let project = new Project();
+    // project.project_id = 1;
+    // project.team_leader_id = 1;
+    // project.name = '1st Project';
+    // project.description = "hi"
+    // project.context_id = 1;
+    // await projectRepository.save(project);
   }
 }
