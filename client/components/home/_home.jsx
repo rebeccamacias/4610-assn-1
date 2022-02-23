@@ -58,7 +58,7 @@ export const Home = () => {
       {/*TODO Create project component, then get all projects the user is associated with */}
       {projectsDiv}
     </div>
-    
+    <br/>
     <div>New Project Name</div>
     <Input type="text" value={newProjectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
     <Button type="button" onClick={console.log(newProjectName)}>Create new project</Button>
