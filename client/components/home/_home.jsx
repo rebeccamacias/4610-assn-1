@@ -60,8 +60,8 @@ export const Home = () => {
     </div>
     
     <div>New Project Name</div>
-    <Input type="text" value={newProjectName} onChange={(e)=> {setNewProjectName(e.target.value); console.log(newProjectName)}}></Input>
-    <Button type="button" onClick={api.null}>Create new project</Button>
+    <Input type="text" value={newProjectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
+    <Button type="button" onClick={console.log(newProjectName)}>Create new project</Button>
     <br/> 
     
 
