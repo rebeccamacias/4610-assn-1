@@ -59,6 +59,11 @@ const saveProject = async () => {
     setErrorMessage("Project name can't be empty");
     return;
   }
+  if (projectDescription === ''){
+    setErrorMessage("Project description can't be empty");
+    return;
+  }
+  
   const projectBody = {
     team_leader_id: api.get('team_leader/:' + user_id),
     name: projectName,
