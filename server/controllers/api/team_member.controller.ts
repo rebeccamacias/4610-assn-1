@@ -13,7 +13,7 @@ class TeamMemberPostBody{
 export class Team_Member_Controller {
     constructor(private teamMemberService: Team_Member_Service) {}
 
-    @Get('team-member') //gets all the team members for the project
+    @Get('team-member/:project_id') //gets all the team members for the project
     public async index(@JwtBody() jwtBody: JwtBodyDto) {
         const team_member = await this.teamMemberService.findAllForUser(jwtBody.userId);
         return { team_member };

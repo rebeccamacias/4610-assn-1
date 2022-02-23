@@ -18,13 +18,13 @@ class TaskPostBody{
 export class TasksController {
     constructor(private tasksService: TasksService) {}
 
-    @Get('tasks')
+    @Get('tasks/:project_id') //get all of the tasks in a certain project (used on project page)
     public async index(@JwtBody() jwtBody: JwtBodyDto) {
         const tasks = await this.tasksService.findAllForUser(jwtBody.userId);
         return { tasks };
     }
 
-    @Post('tasks/') //add a new task
+    @Post('tasks/:project_id') //add a new task to a specific project
     public async create(@JwtBody() jwtBody: JwtBodyDto, @Body() body: TaskPostBody) {
         let task = new Task();
         task.title = body.title;
