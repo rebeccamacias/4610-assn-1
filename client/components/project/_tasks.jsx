@@ -9,7 +9,7 @@ export const Tasks = ({ tasks }) => {
           {task.description}
           {task.time_estimation}
           {task.status}
-          {task.team_member_id}
+          {/* {task.team_member_id} */}
           {/* <div>
             <Button onClick={() => deleteTask(task)}>Delete</Button>
           </div> */}

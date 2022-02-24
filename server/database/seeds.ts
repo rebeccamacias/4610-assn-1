@@ -46,15 +46,5 @@ export default class Seeds implements Seeder {
     } else {
       console.log(`\nAdmin User with email ${process.env.ADMIN_EMAIL} already exists`);
     }
-
-    // //Add a Project Initially
-    // const projectRepository = connection.getRepository(Project);
-    // let project = new Project();
-    // project.project_id = 1;
-    // project.team_leader_id = 1;
-    // project.name = '1st Project';
-    // project.description = "hi"
-    // project.context_id = 1;
-    // await projectRepository.save(project);
   }
 }

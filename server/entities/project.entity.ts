@@ -1,14 +1,14 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Task } from './task.entity';
 import { User } from './user.entity';
 
 @Entity()
 export class Project {
   @PrimaryGeneratedColumn()
-  project_id: number;
+  id: number;
 
   @Column({ unique: true, nullable: false })
-  team_leader_id: number
+  teamLeaderId: number
 
   @Column({ nullable: false })
   name: string
@@ -16,13 +16,12 @@ export class Project {
   @Column({ nullable: false })
   description: string
 
-  @Column({ nullable: false })
-  context_id: number
+  @Column({ unique: true, nullable: false })
+  contextId: string
 
-  @ManyToOne(() => User, (user) => user.projects)
-  user: User[];
+  @ManyToMany (() => User, (user) => user.projects, { cascade: true })
+  users: User[];
 
-  // @OneToMany(()=> Task, (task) => Task.project)
-  // task: Task;
-
+  @OneToMany(()=> Task, (task) => task.project)
+  tasks: Task[];
 }

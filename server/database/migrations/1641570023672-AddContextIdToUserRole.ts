@@ -7,6 +7,7 @@ export class AddContextIdToUserRole1641570023672 implements MigrationInterface {
       new TableColumn({
         name: 'contextId',
         type: 'text',
+        isUnique: true,
         default: "'root'", // default values must include single quotes for text
       }),
     );

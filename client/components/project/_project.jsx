@@ -4,6 +4,7 @@ import { ApiContext } from '../../utils/api_context';
 import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
+import { useParams } from 'react-router-dom';
 
 export const Project = () => {
   const [, setAuthToken] = useContext(AuthContext);
@@ -13,10 +14,19 @@ export const Project = () => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [users, setUsers] = useState([]);
   const [project, setProject] = useState(null);
+  const {projectId} = useParams();
+
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
+    const result = await api.get(`/project/${projectId}`);
+    const { users, tasks, ...project } = result.project;
+    setUsers(users);
+    setTasks(tasks);
+    setProject(project);
     setLoading(false);
   }, []);
 
@@ -30,11 +40,6 @@ export const Project = () => {
 
   // Get projects members, create a list item for each so drop down menus can be used to assign tasks
   // members api call
-  var users;
-  var projectsDiv = users.map((user)=> 
-  <div>
-      <li>{user.name}</li>
-  </div>)
 
   // Get tasks for the current project
 
@@ -45,22 +50,22 @@ export const Project = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  console.log(project);
+  
   return (
       <div>
           {/* create columns */}
-          <Button onClick={/* Add task */}>Add Task</Button>
-          
           <div>
-            <div style="float: left; width: 200px;">
+            <div>
                 Incomplete tasks
                 Display Incomplete tasks
             </div>
-            <div style="float: left; width: 200px;">
+            <div>
                 Completed Tasks
                 Display completed tasks
             </div>
           </div>
-          <Button onClick={/** Drop down of all users? */}>Add Team Member</Button>
       </div>
   )
 }
