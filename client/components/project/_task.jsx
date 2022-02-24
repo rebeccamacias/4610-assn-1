@@ -7,7 +7,7 @@ export const Task = ({ task }) => {
         {task.description}
         {task.time_estimation}
         {task.status}
-        {task.team_member_id}
+        {/* {task.team_member_id} */}
         {/* <div>
           <Button onClick={() => deleteNote(note)}>Delete ME!!!</Button>
         </div> */}

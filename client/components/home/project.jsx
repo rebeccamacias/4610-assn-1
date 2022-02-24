@@ -6,7 +6,7 @@ export const Project = ({ project }) => {
     <div className="border-2 rounded p-4">
       {project.name}
       {project.description}
-      {project.team_leader_id}
+      {/* {project.team_leader_id} */}
       {/* <div>
         <Button onClick={() => deleteNote(note)}>Delete ME!!!</Button>
       </div> */}
