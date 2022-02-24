@@ -15,12 +15,10 @@ export class AddUserToProject1645673301016 implements MigrationInterface {
                     },
                     {
                         name: 'userId',
-                        isUnique: true,
                         type: 'int',
                     },
                     {
                         name: 'projectId',
-                        isUnique: true,
                         type: 'int',
                     }
                 ],
