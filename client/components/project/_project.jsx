@@ -5,6 +5,8 @@ import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
 import { useParams } from 'react-router-dom';
+import { Tasks } from 'tasks';
+import { Input } from '../common/input'
 
 export const Project = () => {
   const [, setAuthToken] = useContext(AuthContext);
@@ -55,17 +57,13 @@ export const Project = () => {
   
   return (
       <div>
-          {/* create columns */}
-          <div>
-            <div>
-                Incomplete tasks
-                Display Incomplete tasks
-            </div>
-            <div>
-                Completed Tasks
-                Display completed tasks
-            </div>
-          </div>
+        <Button>Add task</Button>
+        <br/>
+          <Tasks tasks={tasks}></Tasks>
+          <br/>
+          <br/>
+          <Input>Email field to invite, need to check that entered email corresponds to a user</Input>
+          <Button>Add user  </Button>
       </div>
   )
 }

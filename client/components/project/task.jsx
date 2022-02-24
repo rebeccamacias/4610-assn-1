@@ -12,7 +12,7 @@ export const Task = ({ task, ...other }) => {
         {task.title}
         {task.description}
         {task.time_estimation}
-        {task.status}
+        Completed: {task.status}
         { button }
       </div>
     );
