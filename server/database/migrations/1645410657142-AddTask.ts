@@ -7,13 +7,13 @@ export class Task1645410657142 implements MigrationInterface {
 	    name: 'task',
 		columns: [
 		  {
-		    name: 'task_id',
+		    name: 'id',
 		    isPrimary: true,
 		    isGenerated: true,
 			type: 'int'
           },
 		  {
-		    name: 'project_id',
+		    name: 'projectId',
 			type: 'int',
           },
 		  {
@@ -27,7 +27,7 @@ export class Task1645410657142 implements MigrationInterface {
 			type: 'int',
           },
 		  {
-		    name: 'time_estimation',
+		    name: 'timeEstimation',
 			isNullable: false,
 			type: 'int',
           },
@@ -36,6 +36,10 @@ export class Task1645410657142 implements MigrationInterface {
 			isNullable: false,
 			type: 'Boolean',
           },
+		  {
+			name: 'userId',
+			type: 'int',
+		  }
 		],
 	  }),
 	);
@@ -43,9 +47,19 @@ export class Task1645410657142 implements MigrationInterface {
 	await queryRunner.createForeignKey(
 		'task',
 	  new TableForeignKey({
-	    columnNames: ['project_id'],
-		referencedColumnNames: ['project_id'],
+	    columnNames: ['projectId'],
+		referencedColumnNames: ['id'],
 		referencedTableName: 'project',
+		onDelete: 'CASCADE',
+	  }),
+	);
+
+	await queryRunner.createForeignKey(
+		'task',
+	  new TableForeignKey({
+	    columnNames: ['userId'],
+		referencedColumnNames: ['id'],
+		referencedTableName: 'user',
 		onDelete: 'CASCADE',
 	  }),
 	);

@@ -6,7 +6,7 @@ import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
 import { Input } from '../common/input';
-import { Projects } from './_projects';
+import { Projects } from './projects';
 
 export const Home = () => {
   const [, setAuthToken] = useContext(AuthContext);
@@ -17,16 +17,15 @@ export const Home = () => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [projectName, setNewProjectName, projectDescription, setNewProjectDescription] = useState('');
+  const [projectName, setNewProjectName] = useState('');
+  const [projectDescription, setNewProjectDescription] = useState('');
   const [projects, setProjects] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
-    console.log(user);
-    const { projects } = await api.get(`/projects/${user.id}`);
-    // console.log(projects);
+    const { projects } = await api.get('/projects');
     setProjects(projects);
     setLoading(false);
   }, []);

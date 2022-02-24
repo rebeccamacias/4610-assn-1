@@ -7,15 +7,14 @@ export class Project1645397955482 implements MigrationInterface {
 	    name: 'project',
 		columns: [
 		  {
-		    name: 'project_id',
+		    name: 'id',
 		    isPrimary: true,
 		    isGenerated: true,
 			isUnique: true,
 			type: 'int'
           },
 		  {
-		  	name: 'team_leader_id',
-			isUnique: true,
+		  	name: 'teamLeaderId',
 			type: 'int',
 		  },
 		  {
@@ -29,7 +28,7 @@ export class Project1645397955482 implements MigrationInterface {
 			type: 'text',
 		  },
 		  {
-		    name: 'context_id',
+		    name: 'contextId',
 			isUnique: true,
 			isNullable: false,
 			type: 'text',
@@ -41,32 +40,13 @@ export class Project1645397955482 implements MigrationInterface {
 	await queryRunner.createForeignKey(
 	  'project',
 	  new TableForeignKey({
-	    columnNames: ['team_leader_id'],
+	    columnNames: ['teamLeaderId'],
 		referencedColumnNames: ['id'],
 		referencedTableName: 'user',
 		onDelete: 'CASCADE',
 	  }),
 	);
 
-	await queryRunner.createForeignKey(
-		'project',
-		new TableForeignKey({
-		  columnNames: ['context_id'],
-		  referencedColumnNames: ['contextId'],
-		  referencedTableName: 'user_role',
-		  onDelete: 'CASCADE',
-		}),
-	  );
-
-	await queryRunner.createForeignKey(
-		'user_role',
-		new TableForeignKey({
-			columnNames: ['contextId'],
-			referencedColumnNames: ['context_id'],
-			referencedTableName: 'project',
-			onDelete: 'CASCADE',
-		}),
-	);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

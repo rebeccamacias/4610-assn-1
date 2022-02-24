@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinTable, ManyToMany } from 'typeorm';
 import { Project } from './project.entity';
 import { RefreshToken } from './refresh_token.entity';
 import { Task } from './task.entity';
@@ -29,15 +29,10 @@ export class User {
   @OneToMany(() => UserRole, (userRole) => userRole.user, { cascade: true })
   userRoles: UserRole[];
 
-  @OneToMany(() => Project, (project) => project.user)
+  @ManyToMany(() => Project, (project) => project.users)
+  @JoinTable({ name: 'user_project'})
   projects: Project[];
 
   @OneToMany(() => Task, (task) => task.user)
   tasks: Task[];
-
-  // @OneToOne(() => Team_Member, (team_member) => team_member.user)
-  // team_members: Team_Member[];
-
-  // @OneToMany(() => Team_Leader, (teamLeader) => teamLeader.user)
-  // team_leader:Team_Leader[];
 }
