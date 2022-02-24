@@ -1,7 +1,7 @@
 import { Button } from '../common/button';
 import { ApiContext } from '../../utils/api_context';
 
-export const Task = ({ task, ...other }) => {
+export const Task = ({ task, users, ...other }) => {
   const api = useContext(ApiContext);
   const toggleCompletion = async () => {
 
