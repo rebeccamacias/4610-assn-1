@@ -10,10 +10,12 @@ export class Project1645397955482 implements MigrationInterface {
 		    name: 'project_id',
 		    isPrimary: true,
 		    isGenerated: true,
+			isUnique: true,
 			type: 'int'
           },
 		  {
 		  	name: 'team_leader_id',
+			isUnique: true,
 			type: 'int',
 		  },
 		  {
@@ -28,6 +30,7 @@ export class Project1645397955482 implements MigrationInterface {
 		  },
 		  {
 		    name: 'context_id',
+			isUnique: true,
 			isNullable: false,
 			type: 'text',
 		  },
@@ -48,11 +51,21 @@ export class Project1645397955482 implements MigrationInterface {
 	await queryRunner.createForeignKey(
 		'project',
 		new TableForeignKey({
-	  	columnNames: ['context_id'],
-		referencedColumnNames: ['contextId'],
-		referencedTableName: 'user_role',
-		onDelete: 'CASCADE',
-	  }),
+		  columnNames: ['context_id'],
+		  referencedColumnNames: ['contextId'],
+		  referencedTableName: 'user_role',
+		  onDelete: 'CASCADE',
+		}),
+	  );
+
+	await queryRunner.createForeignKey(
+		'user_role',
+		new TableForeignKey({
+			columnNames: ['contextId'],
+			referencedColumnNames: ['context_id'],
+			referencedTableName: 'project',
+			onDelete: 'CASCADE',
+		}),
 	);
   }
 

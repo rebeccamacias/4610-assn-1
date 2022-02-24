@@ -16,7 +16,7 @@ export class Project {
   @Column({ nullable: false })
   description: string
 
-  @Column({ nullable: false })
+  @Column({ unique: true, nullable: false })
   context_id: number
 
   @ManyToOne(() => User, (user) => user.projects)
