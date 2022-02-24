@@ -6,8 +6,8 @@ export class Task {
   @PrimaryGeneratedColumn()
   task_id: number;
 
-  @Column({ unique: true })
-  team_member_id: number;
+  // @Column({ unique: true })
+  // team_member_id: number;
 
   @Column({ unique: true })
   project_id: number;

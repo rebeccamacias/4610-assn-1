@@ -45,15 +45,15 @@ export class Project1645397955482 implements MigrationInterface {
 	  }),
 	);
 
-	// await queryRunner.createForeignKey(
-	// 	'project',
-	// 	new TableForeignKey({
-	//   	columnNames: ['context_id'],
-	// 	referencedColumnNames: ['contextId'],
-	// 	referencedTableName: 'user-role',
-	// 	onDelete: 'CASCADE',
-	//   }),
-	// );
+	await queryRunner.createForeignKey(
+		'project',
+		new TableForeignKey({
+	  	columnNames: ['context_id'],
+		referencedColumnNames: ['contextId'],
+		referencedTableName: 'user_role',
+		onDelete: 'CASCADE',
+	  }),
+	);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

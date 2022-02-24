@@ -8,7 +8,7 @@ export const Projects = ({ projects }) => {
         <div key={project.project_id} className="border-2 rounded p-4">
           {project.name}
           {project.description}
-          {project.team_leader_id}
+          {/* {project.team_leader_id} */}
           {/* <div>
             <Button onClick={() => deleteProject(project)}>Delete</Button>
           </div> */}

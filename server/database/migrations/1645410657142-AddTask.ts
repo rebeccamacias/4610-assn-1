@@ -12,10 +12,10 @@ export class Task1645410657142 implements MigrationInterface {
 		    isGenerated: true,
 			type: 'int'
           },
-		  {
-		    name: 'team_member_id',
-			type: 'int',
-          },
+		//   {
+		//     name: 'team_member_id',
+		// 	type: 'int',
+        //   },
 		  {
 		    name: 'project_id',
 			type: 'int',

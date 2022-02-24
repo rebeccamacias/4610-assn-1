@@ -11,7 +11,7 @@ class TaskPostBody{
     time_estimation: number;
     status: boolean;
     project_id: number;
-    team_member_id: number;
+    // team_member_id: number;
 }
 
 @Controller()
@@ -29,7 +29,7 @@ export class TasksController {
         let task = new Task();
         task.title = body.title;
         task.description = body.description;
-        task.team_member_id = body.team_member_id;
+        // task.team_member_id = body.team_member_id;
         task.project_id = body.project_id;
         task.time_estimation = body.time_estimation;
         task.status = body.status;

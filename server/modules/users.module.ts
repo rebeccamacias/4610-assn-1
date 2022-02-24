@@ -13,11 +13,11 @@ import { RolesService } from 'server/providers/services/roles.service';
 import { UserRole } from 'server/entities/user_role.entity';
 import { Project } from 'server/entities/project.entity';
 import { Task } from 'server/entities/task.entity';
-import { Team_Member } from 'server/entities/team_member.entity';
-import { Team_Leader } from 'server/entities/team_leader.entity';
+// import { Team_Member } from 'server/entities/team_member.entity';
+// import { Team_Leader } from 'server/entities/team_leader.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, RefreshToken, Role, UserRole, Project, Task, Team_Member, Team_Leader])],
+  imports: [TypeOrmModule.forFeature([User, RefreshToken, Role, UserRole, Project, Task])],
   controllers: [SessionsController, UsersController, RefreshTokensController],
   providers: [UsersService, RolesService, RefreshTokensService, JwtService],
   exports: [TypeOrmModule],

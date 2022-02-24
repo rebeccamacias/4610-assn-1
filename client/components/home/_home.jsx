@@ -17,15 +17,21 @@ export const Home = () => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [newProjectName, setNewProjectName, newProjectDescription, setNewProjectDescription] = useState("");
+  const [projectName, setNewProjectName, projectDescription, setNewProjectDescription] = useState('');
   const [projects, setProjects] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
+    console.log(user);
+    const { projects } = await api.get(`/projects/${user.id}`);
+    // console.log(projects);
+    setProjects(projects);
     setLoading(false);
   }, []);
+
+
 
   const logout = async () => {
     const res = await api.del('/sessions');
@@ -35,37 +41,30 @@ export const Home = () => {
   };
 
   // Get projects using api
-
+  // useEffect(async () => {
+  //   const { projects } = await api.get(`/projects/:${user.id}`);
+  //   setLoading(false);
+  //   setProjects(projects);
+  // }, []);
 
 
   if (loading) {
     return <div>Loading...</div>;
   }
-  
-
-  const projectsDiv = projects.map((project) => 
-  <div key={project.project_id}>
-      <Button type="button" onClick={(<Link to={`project/${project.project_id}`}></Link>)} /*Navigate to project view */>
-        {project.name}
-      </Button>
-      {project.description}
-  </div>
-  )
 
 const saveProject = async () => {
   setErrorMessage('');
 
   if (projectName === '') {
-    setErrorMessage("Project name can't be empty");
+    setErrorMessage('Project name can\'t be empty');
     return;
   }
   if (projectDescription === ''){
-    setErrorMessage("Project description can't be empty");
+    setErrorMessage('Project description can\'t be empty');
     return;
   }
   
   const projectBody = {
-    team_leader_id: api.get('team_leader/:' + user_id),
     name: projectName,
     description: projectDescription,
   };
@@ -80,19 +79,16 @@ const saveProject = async () => {
     
     <br/>
 
-    {/*TODO Create project component, then get all projects the user is associated with */}
+    {/*TODO get all projects the user is associated with */}
     <div>New Project Name</div>
     <Input type="text" value={projectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
     <div>New Project Description</div>
     <Input type ="text" value={projectDescription} onChange={(e) => {setNewProjectDescription(e.target.value);}}></Input>
     <div></div>
-    <Button type="button" onClick={api.post('projects')}>Create new project</Button>
+    <Button type="button" onClick={saveProject}>Create new project</Button>
     <br/> 
 
-    <div>
-      <h1>Projects</h1>
-      {projectsDiv}
-    </div>
+    <Projects projects={projects} />
 
       <Button type="button" onClick={logout}>
         Logout

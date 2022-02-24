@@ -11,6 +11,10 @@ export class ProjectsService {
         private projectRepository: Repository<Project>, 
     ) {}
 
+    // getProjects(): Promise<Project[]> {
+    //     return this.projectRepository.find()
+    // }
+
     findAllForUser(userId: number): Promise<Project[]> {
         return this.projectRepository.find({
             where: { userId },
