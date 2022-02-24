@@ -28,7 +28,7 @@ export const Home = () => {
     const { projects } = await api.get('/projects');
     setProjects(projects);
     setLoading(false);
-  }, [projects]);
+  }, []);
 
 
 
