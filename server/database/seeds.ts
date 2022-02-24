@@ -5,7 +5,6 @@ import { Role, RoleKey } from '../entities/role.entity';
 import * as dotenv from 'dotenv';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from '../entities/user_role.entity';
-import { Project } from 'server/entities/project.entity';
 dotenv.config();
 
 export default class Seeds implements Seeder {
