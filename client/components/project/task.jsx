@@ -1,6 +1,6 @@
 import { Button } from '../common/button';
 import { ApiContext } from '../../utils/api_context';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect} from 'react';
 
 export const Task = ({ task, users, ...other }) => {
   const api = useContext(ApiContext);
