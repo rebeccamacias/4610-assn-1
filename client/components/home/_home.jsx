@@ -28,7 +28,7 @@ export const Home = () => {
     const { projects } = await api.get('/projects');
     setProjects(projects);
     setLoading(false);
-  }, []);
+  }, [projects]);
 
 
 
@@ -85,9 +85,11 @@ const saveProject = async () => {
     <Input type ="text" value={projectDescription} onChange={(e) => {setNewProjectDescription(e.target.value);}}></Input>
     <div></div>
     <Button type="button" onClick={saveProject}>Create new project</Button>
-    <br/> 
+    <br/> <br/>
 
     <Projects projects={projects} />
+    <br/>
+    <br/>
 
       <Button type="button" onClick={logout}>
         Logout

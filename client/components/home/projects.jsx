@@ -10,14 +10,14 @@ const navigate = useNavigate();
     <div className="flex-1">
       {projects.map((project) => (
         <div key={project.id} className="border-2 rounded p-4">
-          {project.name}
+          {project.name}<br/>
           {project.description}
-          {/* {project.team_leader_id} */}
           <div>
-            <Button onClick={() => navigate(`/project/${project.id}`)}></Button>
+            <Button onClick={() => navigate(`/project/${project.id}`)}>Go to {project.name}</Button>
           </div>
         </div>
       ))}
+      <br/>
     </div>
   );
 };
