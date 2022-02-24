@@ -32,23 +32,6 @@ export const Project = () => {
     setLoading(false);
   }, []);
 
-  const logout = async () => {
-    const res = await api.del('/sessions');
-    if (res.success) {
-      setAuthToken(null);
-    }
-  };
-  // Get current Project
-
-  // Get projects members, create a list item for each so drop down menus can be used to assign tasks
-  // members api call
-
-  // Get tasks for the current project
-
-  // Figure out how to go over the array of tasks, and based off status send to column
-
-  // 
-
   if (loading) {
     return <div>Loading...</div>;
   }
