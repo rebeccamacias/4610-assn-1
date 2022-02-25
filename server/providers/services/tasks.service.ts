@@ -21,4 +21,11 @@ export class TasksService {
         return this.taskRepository.save(task);
     }
 
+    findTaskById(id: number){
+        return this.taskRepository.findOne(id)
+    }
+
+    updateTask(task: Task){
+        return this.taskRepository.update(task.id,task)
+    }
 }
