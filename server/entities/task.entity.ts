@@ -7,8 +7,8 @@ export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column({ unique: true })
-  // team_member_id: number;
+  @Column({ unique: true, nullable: true })
+  userId: number;
 
   @Column({ unique: true })
   projectId: number;

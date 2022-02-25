@@ -20,6 +20,7 @@ export const Project = () => {
   const [users, setUsers] = useState([]);
   const [project, setProject] = useState(null);
   const {projectId} = useParams();
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Code for creating a new task
   const [timeEst, setTimeEst] = useState(0);
@@ -59,18 +60,20 @@ export const Project = () => {
     }
     
     const taskBody = {
-      title: string,
-      description: string,
-      timeEstimation: parse, // need 
+      title: taskName,
+      description: taskDesc,
+      timeEstimation: timeEst, 
       status: false,
       projectId: project.id
     }
     const { task } = await api.post(`tasks/${project.id}`, taskBody); // Fix path
   
     setTasks([...tasks, task]);
+    console.log(tasks)
   };
 
   console.log(project);
+  console.log(tasks);
   
   return (
       <div>
@@ -78,15 +81,16 @@ export const Project = () => {
         <Input type="text" value={taskName} onChange={(e)=> {setTaskName(e.target.value);}}></Input>
         <div>New Project Description</div>
         <Input type ="text" value={taskDesc} onChange={(e) => {setTaskDesc(e.target.value);}}></Input>
-        <div>New Task Time estimate in Hours</div>
-        <Input type ="number" step=".25" value={timeEst} onChange={(e) => {setTimeEst(e.target.value);}}></Input>
+        <div>New Task Time estimate in Hours with step of .25</div>
+        <Input type ="number" step={".25"} value={timeEst} onChange={(e) => {setTimeEst(e.target.value);}}></Input>
         <Button type="button" onClick={saveTask}>Create new project</Button>
         <br/> <br/>
         <br/>
-          {/*<Tasks tasks={tasks}></Tasks>*/}
+          <Tasks tasks={tasks}></Tasks>
           <br/>
           <br/>
-          <Input>Email field to invite, need to check that entered email corresponds to a user</Input>
+          Email field to invite, need to check that entered email corresponds to a user
+          <Input></Input>
           <Button>Add user  </Button>
       </div>
   )
