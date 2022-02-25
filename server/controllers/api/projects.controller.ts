@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, Post, Put } from '@nestjs/common';
 import { JwtBody } from 'server/decorators/jwt_body.decorator';
 import { JwtBodyDto } from 'server/dto/jwt_body.dto';
 import { Project } from 'server/entities/project.entity';
@@ -10,6 +10,13 @@ import * as crypto from 'crypto';
 class ProjectPostBody {
     name: string;
     description: string;
+}
+
+class ProjectPostBodyWithId {
+    // name: string;
+    // description: string;\
+    id: number;
+    users: User[];
 }
 
 @Controller()
@@ -46,5 +53,15 @@ export class ProjectsController {
         project.users = [user];
         project = await this.projectsService.createProject(project);
         return { project };
+    }
+
+    @Put('/project/:id')
+    public async update(@JwtBody() jwtBody: JwtBodyDto, @Body() body: ProjectPostBodyWithId) {
+        let project = await this.projectsService.getProjectById(body.id);
+        // project.name = body.name;
+        // project.description = body.description;
+        // project.contextId = body.contextId;
+        project.users = body.users;
+        return await this.projectsService.updateProject(project);
     }
 }

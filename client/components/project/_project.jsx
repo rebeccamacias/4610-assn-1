@@ -17,6 +17,7 @@ export const Project = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
   const [project, setProject] = useState(null);
   const {projectId} = useParams();
@@ -27,10 +28,15 @@ export const Project = () => {
   const [taskDesc, setTaskDesc] = useState("");
   const [taskName, setTaskName] = useState("");
 
+  //code for adding a user to a project
+  const [potentialEmail, setPotentialEmail] = useState("");
+
 
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
+    const allUsers = await api.get('users');
+    setAllUsers(allUsers);
     const result = await api.get(`/project/${projectId}`);
     const { users, tasks, ...project } = result.project;
     setUsers(users);
@@ -41,6 +47,31 @@ export const Project = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  const validateUser = async () => {
+    setErrorMessage('');
+    let found = false;
+    let userBeingAdded;
+    allUsers.users.map((user) => {
+      if (user.email = potentialEmail){
+        found = true;
+        userBeingAdded = user;
+      }
+    });
+    
+    if (found) {
+      setUsers(...users, userBeingAdded);
+      const projectBody = {
+        projectId: project.id,
+        users: users
+      }
+      await api.put(`project/${project.id}`, projectBody);
+      console.log('user added');
+    } else {
+      setErrorMessage('User does not have an account.');
+    }
+    console.log(users);
   }
 
   const saveTask = async () => {
@@ -54,7 +85,7 @@ export const Project = () => {
       setErrorMessage('Task description can\'t be empty');
       return;
     }
-    if (taskDesc === ''){
+    if (timeEst === ''){
       setErrorMessage('Time estimate can\'t be empty');
       return;
     }
@@ -69,16 +100,12 @@ export const Project = () => {
     const { task } = await api.post(`tasks/${project.id}`, taskBody); // Fix path
   
     setTasks([...tasks, task]);
-    console.log(tasks)
   };
 
-  // console.log(project);
-  // console.log(tasks);
-  // console.log(users)
+  console.log(project);
+  console.log(tasks);
+  console.log(users)
   
-  const addUser = async () => {
-
-  }
 
   return (
       <div>
@@ -95,8 +122,8 @@ export const Project = () => {
           <br/>
           <br/>
           Email field to invite, need to check that entered email corresponds to a user
-          <Input></Input>
-          <Button>Add user  </Button>
+          <Input value={potentialEmail} onChange={(e) => {setPotentialEmail(e.target.value);}}></Input>
+          <Button onClick={validateUser}>Add user  </Button>
       </div>
   )
 }
