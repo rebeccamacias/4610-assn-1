@@ -36,7 +36,7 @@ export const Task = ({ task, users, ...other }) => {
           })}
         </Select>
         <Button onClick={assignTaskToUser}> Assign Task</Button>
-        {task.time_estimation}<br/>
+        {task.time_estimation} Hours<br/>
         Completed: {task.status}<br/>
         { button }
       </div>

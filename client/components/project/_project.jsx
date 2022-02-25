@@ -5,7 +5,7 @@ import { AuthContext } from '../../utils/auth_context';
 import { RolesContext } from '../../utils/roles_context';
 import { Button } from '../common/button';
 import { useParams } from 'react-router-dom';
-import { Tasks } from 'tasks';
+import { Tasks } from './tasks';
 import { Input } from '../common/input'
 
 export const Project = () => {
@@ -22,9 +22,9 @@ export const Project = () => {
   const {projectId} = useParams();
 
   // Code for creating a new task
-  const [timeEst, setTimeEst] = useState("");
+  const [timeEst, setTimeEst] = useState(0);
   const [taskDesc, setTaskDesc] = useState("");
-  const [taskName, setTaskname] = useState("");
+  const [taskName, setTaskName] = useState("");
 
 
   useEffect(async () => {
@@ -61,7 +61,7 @@ export const Project = () => {
     const taskBody = {
       title: string,
       description: string,
-      timeEstimation: number, // need 
+      timeEstimation: parse, // need 
       status: false,
       projectId: project.id
     }
@@ -74,9 +74,16 @@ export const Project = () => {
   
   return (
       <div>
-        <Button>Add task</Button>
+        <div>New Task Name</div>
+        <Input type="text" value={taskName} onChange={(e)=> {setTaskName(e.target.value);}}></Input>
+        <div>New Project Description</div>
+        <Input type ="text" value={taskDesc} onChange={(e) => {setTaskDesc(e.target.value);}}></Input>
+        <div>New Task Time estimate in Hours</div>
+        <Input type ="number" step=".25" value={timeEst} onChange={(e) => {setTimeEst(e.target.value);}}></Input>
+        <Button type="button" onClick={saveTask}>Create new project</Button>
+        <br/> <br/>
         <br/>
-          <Tasks tasks={tasks}></Tasks>
+          {/*<Tasks tasks={tasks}></Tasks>*/}
           <br/>
           <br/>
           <Input>Email field to invite, need to check that entered email corresponds to a user</Input>
