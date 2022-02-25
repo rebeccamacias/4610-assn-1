@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Task } from "server/entities/task.entity";
-import { Repository } from "typeorm";
+import { Repository, UpdateEvent, UpdateResult } from "typeorm";
 
 
 @Injectable()
@@ -21,4 +21,11 @@ export class TasksService {
         return this.taskRepository.save(task);
     }
 
+    findTaskById(id: number): Promise<Task>{
+        return this.taskRepository.findOne(id)
+    }
+
+    updateTask(task: Task): Promise<UpdateResult>{
+        return this.taskRepository.update(task.id,task)
+    }
 }
