@@ -102,6 +102,11 @@ export const Project = () => {
     setTasks([...tasks, task]);
   };
 
+  console.log(project);
+  console.log(tasks);
+  console.log(users)
+  
+
   return (
       <div>
         <div>New Task Name</div>
@@ -113,7 +118,7 @@ export const Project = () => {
         <Button type="button" onClick={saveTask}>Create new project</Button>
         <br/> <br/>
         <br/>
-          <Tasks tasks={tasks}></Tasks>
+          <Tasks tasks={tasks} users={users}></Tasks>
           <br/>
           <br/>
           Email field to invite, need to check that entered email corresponds to a user
