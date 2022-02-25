@@ -2,8 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinTable,
 import { Project } from './project.entity';
 import { RefreshToken } from './refresh_token.entity';
 import { Task } from './task.entity';
-// import { Team_Member } from './team_member.entity';
-// import { Team_Leader } from './team_leader.entity';
 import { UserRole } from './user_role.entity';
 
 @Entity()
