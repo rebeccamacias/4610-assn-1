@@ -7,5 +7,5 @@ export const Tasks = ({ tasks, users }) => {
       } else {
         <Task task={task} users={users} className="border-2 rounded p-4 outline-red-600"></Task>
       }
-  })
+  });
 };

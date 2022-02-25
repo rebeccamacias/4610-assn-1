@@ -69,8 +69,6 @@ const saveProject = async () => {
       <h1>Welcome {user.firstName}</h1>
     
     <br/>
-
-    {/*TODO get all projects the user is associated with */}
     <div>New Project Name</div>
     <Input type="text" value={projectName} onChange={(e)=> {setNewProjectName(e.target.value);}}></Input>
     <div>New Project Description</div>

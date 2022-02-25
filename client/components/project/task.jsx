@@ -7,6 +7,7 @@ export const Task = ({ task, users, ...other }) => {
   const [user, setUser] = useState(null);
 
   useEffect(async () => {
+    setUser(task.user);
 
   });
 
@@ -28,8 +29,14 @@ export const Task = ({ task, users, ...other }) => {
       <div className="border-2 rounded p-4" {...other}>
         {task.title}<br/>
         {task.description}<br/>
-        Assigned to {user.firstName}
-        {task.time_estimation}<br/>
+        Assigned to <Select onChange={(e) => setUser(e.target.value)}>
+          <Option value="">None</Option>
+          {users.map((user) => {
+            <Option value={user}>{user.firstName}</Option>
+          })}
+        </Select>
+        <Button onClick={assignTaskToUser}> Assign Task</Button>
+        {task.time_estimation} Hours<br/>
         Completed: {task.status}<br/>
         { button }
       </div>

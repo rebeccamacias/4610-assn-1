@@ -19,17 +19,17 @@ export class Task1645410657142 implements MigrationInterface {
 		  {
 		    name: 'title',
 		    isNullable: false,
-			type: 'int',
+			type: 'text',
           },
 		  {
 		    name: 'description',
 		    isNullable: false,
-			type: 'int',
+			type: 'text',
           },
 		  {
 		    name: 'timeEstimation',
 			isNullable: false,
-			type: 'int',
+			type: 'real',
           },
 		  {
 		    name: 'status',
@@ -39,6 +39,7 @@ export class Task1645410657142 implements MigrationInterface {
 		  {
 			name: 'userId',
 			type: 'int',
+			isNullable: true
 		  }
 		],
 	  }),
