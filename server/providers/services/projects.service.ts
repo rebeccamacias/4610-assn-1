@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Project } from "server/entities/project.entity";
 import { User } from "server/entities/user.entity";
-import { Repository } from "typeorm";
+import { Repository, UpdateResult } from "typeorm";
 
 
 @Injectable()
@@ -30,4 +30,7 @@ export class ProjectsService {
         return this.projectRepository.save(project);
     }
 
+    updateProject(project: Project): Promise<UpdateResult> {
+        return this.projectRepository.update(project.id, project);
+    }
 }
