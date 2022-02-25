@@ -21,6 +21,12 @@ export const Project = () => {
   const [project, setProject] = useState(null);
   const {projectId} = useParams();
 
+  // Code for creating a new task
+  const [timeEst, setTimeEst] = useState("");
+  const [taskDesc, setTaskDesc] = useState("");
+  const [taskName, setTaskname] = useState("");
+
+
   useEffect(async () => {
     const res = await api.get('/users/me');
     setUser(res.user);
@@ -35,6 +41,34 @@ export const Project = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const saveTask = async () => {
+    setErrorMessage('');
+  
+    if (taskName === '') {
+      setErrorMessage('Task name can\'t be empty');
+      return;
+    }
+    if (taskDesc === ''){
+      setErrorMessage('Task description can\'t be empty');
+      return;
+    }
+    if (taskDesc === ''){
+      setErrorMessage('Time estimate can\'t be empty');
+      return;
+    }
+    
+    const taskBody = {
+      title: string,
+      description: string,
+      timeEstimation: number, // need 
+      status: false,
+      projectId: project.id
+    }
+    const { task } = await api.post(`tasks/${project.id}`, taskBody); // Fix path
+  
+    setTasks([...tasks, task]);
+  };
 
   console.log(project);
   
