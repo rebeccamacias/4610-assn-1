@@ -21,9 +21,9 @@ export const Task = ({ task, users, ...other }) => {
       projectId: task.projectId,
       
     }
-    console.log(taskBody);
     const {updatedTask} = await api.put(`tasks/${task.id}`, taskBody);
-    window.location.reload(false); // I'm aware this is bad, I just dont care
+    window.location.reload(false); // I'm aware this is bad, I just dont care, I need to focus on other things at this point
+    //  To whoever reads this, have a great day.  To the midterm! Vinny Smith 2/24/22 at 10:30 pm
   }
 
   const assignTaskToUser = async () => {
