@@ -39,14 +39,6 @@ export const Home = () => {
     }
   };
 
-  // Get projects using api
-  // useEffect(async () => {
-  //   const { projects } = await api.get(`/projects/:${user.id}`);
-  //   setLoading(false);
-  //   setProjects(projects);
-  // }, []);
-
-
   if (loading) {
     return <div>Loading...</div>;
   }
